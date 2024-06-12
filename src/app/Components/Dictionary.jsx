@@ -1,29 +1,28 @@
 "use client";
-import axios from "axios";
 import React, { useState } from "react";
+import { getWordDefinition } from "../services/dictionaryAPI";
 
 export default function Dictionary() {
   let [word, setWord] = useState("");
+  const [definitionData, setDefinitionData] = useState(null);
+  const [error, setError] = useState(null);
 
-  function search(e) {
+  const search = async (e) => {
     e.preventDefault();
-    alert(`searching for ${word}`);
-  }
-
-  let API_KEY = `${process.env.NEXT_PUBLIC_API_KEY}`;
-
-  let apiURL = `https://api.shecodes.io/dictionary/v1/define?word=${word}&key=${API_KEY}`;
-
-  axios
-    .get(apiURL)
-    .then(handleResponse)
-    .catch((error) => {
-      console.error("Error fetching data:", error);
-    });
-
-  function handleResponse(res) {
-    console.log(res.data);
-  }
+    try {
+      const data = await getWordDefinition(word);
+      setDefinitionData(data);
+      console.log(data);
+      setError(null); // Limpiar errores previos si la solicitud es exitosa
+    } catch (error) {
+      if (error.response && error.response.data && error.response.data.message) {
+        setError(error.response.data.message); // Mensaje de error específico de la API
+      } else {
+        setError("Error fetching data");
+      }
+      setDefinitionData(null); // Limpiar definición previa si hay un error
+    }
+  };
 
   function handleWordChange(e) {
     console.log(e.target.value);
@@ -33,8 +32,15 @@ export default function Dictionary() {
   return (
     <>
       <form onSubmit={search}>
-        <input type="search" onChange={handleWordChange}></input>
+        <input type="search" value={word} onChange={handleWordChange}></input>
       </form>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      {definitionData && (
+        <div>
+          <h3>{definitionData.word}:</h3>
+          <p>Phonetic: {definitionData.phonetic}:</p>
+        </div>
+      )}
     </>
   );
 }
