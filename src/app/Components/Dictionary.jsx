@@ -13,14 +13,14 @@ export default function Dictionary() {
       const data = await getWordDefinition(word);
       setDefinitionData(data);
       console.log(data);
-      setError(null); // Limpiar errores previos si la solicitud es exitosa
+      setError(null);
     } catch (error) {
-      if (error.response && error.response.data && error.response.data.message) {
-        setError(error.response.data.message); // Mensaje de error específico de la API
+      if (error.response && error.response.data && error.response.data.message === "Word not found") {
+        setError("Word not found.");
       } else {
         setError("Error fetching data");
       }
-      setDefinitionData(null); // Limpiar definición previa si hay un error
+      setDefinitionData(null);
     }
   };
 
@@ -34,7 +34,7 @@ export default function Dictionary() {
       <form onSubmit={search}>
         <input type="search" value={word} onChange={handleWordChange}></input>
       </form>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p style={{ color: "red", fontSize: "90px" }}>{error}</p>}
       {definitionData && (
         <div>
           <h3>{definitionData.word}:</h3>
