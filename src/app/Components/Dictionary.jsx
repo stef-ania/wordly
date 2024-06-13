@@ -3,6 +3,14 @@ import React, { useState } from "react";
 import { getWordDefinition } from "../services/dictionaryAPI";
 import DefinitionData from "./DefinitionData.jsx";
 import ErrorMessage from "./ErrorMessage";
+import styled from "styled-components";
+
+const StyledSection = styled.section`
+  max-width: 60vw;
+  width: 100%;
+  padding: 3rem;
+  border: 1px solid red;
+`;
 
 export default function Dictionary() {
   let [word, setWord] = useState("");
@@ -33,9 +41,10 @@ export default function Dictionary() {
   }
 
   return (
-    <>
+    <StyledSection>
+      <h3>Which word would you like to search for?</h3>
       <form onSubmit={search}>
-        <input type="search" value={word} onChange={handleWordChange}></input>
+        <input type="search" value={word} onChange={handleWordChange} placeholder="Type a word..."></input>
       </form>
       {error && <ErrorMessage message={error} />}
       {definitionData && (
@@ -43,6 +52,6 @@ export default function Dictionary() {
           <DefinitionData definitionData={definitionData} />
         </div>
       )}
-    </>
+    </StyledSection>
   );
 }
