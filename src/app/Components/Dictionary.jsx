@@ -17,9 +17,9 @@ export default function Dictionary() {
       setError(null);
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message === "Word not found") {
-        setError("Word not found.");
+        setError("Sorry, we couldn't find the word you're looking for. Please try searching for another word.");
       } else {
-        setError("Error fetching data");
+        setError("Sorry, we couldn't find the word you're looking for. Please try searching for another word.");
         console.log("Error fetching data");
       }
       setDefinitionData(null);
