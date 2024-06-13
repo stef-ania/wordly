@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { getWordDefinition } from "../services/dictionaryAPI";
+import DefinitionData from "./DefinitionData.jsx";
 
 export default function Dictionary() {
   let [word, setWord] = useState("");
@@ -19,6 +20,7 @@ export default function Dictionary() {
         setError("Word not found.");
       } else {
         setError("Error fetching data");
+        console.log("Error fetching data");
       }
       setDefinitionData(null);
     }
@@ -34,11 +36,10 @@ export default function Dictionary() {
       <form onSubmit={search}>
         <input type="search" value={word} onChange={handleWordChange}></input>
       </form>
-      {error && <p style={{ color: "red", fontSize: "90px" }}>{error}</p>}
+      {error && <p style={{ color: "red", fontSize: "40px" }}>{error}</p>}
       {definitionData && (
         <div>
-          <h3>{definitionData.word}:</h3>
-          <p>Phonetic: {definitionData.phonetic}:</p>
+          <DefinitionData definitionData={definitionData} />
         </div>
       )}
     </>
