@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { getWordDefinition } from "../services/dictionaryAPI";
 import DefinitionData from "./DefinitionData.jsx";
+import ErrorMessage from "./ErrorMessage";
 
 export default function Dictionary() {
   let [word, setWord] = useState("");
@@ -36,7 +37,7 @@ export default function Dictionary() {
       <form onSubmit={search}>
         <input type="search" value={word} onChange={handleWordChange}></input>
       </form>
-      {error && <p style={{ color: "red", fontSize: "40px" }}>{error}</p>}
+      {error && <ErrorMessage message={error} />}
       {definitionData && (
         <div>
           <DefinitionData definitionData={definitionData} />

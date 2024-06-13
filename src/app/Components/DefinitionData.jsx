@@ -1,5 +1,6 @@
 import React from "react";
 import Meaning from "./Meaning.jsx";
+import ErrorMessage from "./ErrorMessage.jsx";
 
 export default function DefinitionData(props) {
   return props.definitionData && props.definitionData.meanings && props.definitionData.meanings.length > 0 ? (
@@ -13,6 +14,8 @@ export default function DefinitionData(props) {
       ))}
     </>
   ) : (
-    <p>Sorry, we couldn't find the word you're looking for. Please try searching for another word.</p>
+    <ErrorMessage
+      message={"Sorry, we couldn't find the word you're looking for. Please try searching for another word."}
+    />
   );
 }
