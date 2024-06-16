@@ -62,8 +62,8 @@ const StyledInput = styled.input`
   }
 
   &:focus {
-    border-color: var(--tertiary-color);
-    box-shadow: 0 0 0 0.1rem var(--tertiary-color);
+    border-color: var(--text-color);
+    box-shadow: 0 0 0 0.1rem var(--text-color);
     outline: 0;
     transition: all ease-in-out 300ms;
   }
