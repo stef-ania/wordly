@@ -7,6 +7,12 @@ const StyledHeader = styled.header`
   text-align: center;
   justify-content: center;
   margin: 2rem auto;
+  /* 
+  margin: 0rem auto 2rem;
+  border-bottom: 1px solid var(--light-grey);
+  padding: 1rem 0;
+  background-color: #fff;
+  box-shadow: var(--box-shadow); */
 `;
 
 export default function Header() {

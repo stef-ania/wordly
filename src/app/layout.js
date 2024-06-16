@@ -9,10 +9,11 @@ const pt_serif = PT_Serif({
 });
 
 export const nunito = Nunito({
-  weight: ["300", "700"],
+  weight: ["500", "700"],
   style: ["normal", "italic"],
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-nunito",
 });
 
 export const metadata = {

@@ -3,10 +3,13 @@
   --border-radius: 12px;
   --background: #fffbf7;
   --dark-text-color: #0d0c22;
+  --dark-grey: #979797;
+  --middle-grey: #d5d5d5;
   --light-grey: #f2f1ed;
   --primary-color: #f0d3cf;
   --secondary-color: #eca685;
   --tertiary-color: #f3ce8b;
+  --box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 * {
