@@ -6,7 +6,6 @@ const StyledErrorMessage = styled.p`
   border-radius: 12px;
   color: #b02711;
   font-weight: bold;
-  margin-top: 2rem;
   padding: 1.5rem;
 `;
 

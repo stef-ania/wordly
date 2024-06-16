@@ -19,7 +19,7 @@ const StyledSection = styled.section`
   width: 100%;
 `;
 
-const StyledH3 = styled.h3`
+const StyledH2 = styled.h2`
   font-size: 1.5rem;
   line-height: 2rem;
   margin-bottom: 2rem;
@@ -34,6 +34,17 @@ const StyledForm = styled.form`
   flex-direction: column;
   justify-content: flex-start;
   margin: 1rem auto;
+`;
+
+const StyledArticle = styled.article`
+  padding: 3rem 12rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 2rem auto;
 `;
 
 const StyledLabel = styled.label`
@@ -100,15 +111,15 @@ export default function Dictionary() {
   return (
     <StyledSection>
       <StyledForm onSubmit={search}>
-        <StyledH3>Which word would you like to search for?</StyledH3>
+        <StyledH2>Which word would you like to search for?</StyledH2>
         <StyledLabel className={nunito.variable}> Search </StyledLabel>
         <StyledInput type="search" value={word} onChange={handleWordChange} placeholder="Type a word..."></StyledInput>
       </StyledForm>
       {error && <ErrorMessage message={error} />}
       {definitionData && (
-        <div>
+        <StyledArticle>
           <DefinitionData definitionData={definitionData} />
-        </div>
+        </StyledArticle>
       )}
     </StyledSection>
   );
