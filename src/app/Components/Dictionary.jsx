@@ -45,6 +45,7 @@ const Label = styled.label`
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 12px;
+  font-weight: 700;
 `;
 
 const Input = styled.input`
