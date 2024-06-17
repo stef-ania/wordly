@@ -5,7 +5,7 @@ import { pt_serif } from "../utils/fonts";
 import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
 
 const H4 = styled.h4`
-  margin: 0 0 1rem;
+  margin: 0 0 2rem;
   font-size: 1.2rem;
 
   &:first-letter {
@@ -41,10 +41,11 @@ export default function Meaning(props) {
   const { meaning } = props;
 
   return (
-    <div>
+    <>
       <h5>Type:</h5>
       <H4 className={pt_serif.className}>{props.meaning.partOfSpeech}</H4>
-      <Paragraph>{props.meaning.definition}</Paragraph>
+      <h5>Meaning:</h5>
+      <Paragraph>{props.meaning.definition}.</Paragraph>
       {meaning.example && (
         <Example>
           <h5>Example:</h5>
@@ -52,6 +53,6 @@ export default function Meaning(props) {
         </Example>
       )}
       {meaning.synonyms && meaning.synonyms.length > 0 && <Synonyms synonyms={meaning.synonyms} />}
-    </div>
+    </>
   );
 }
