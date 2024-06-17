@@ -37,16 +37,20 @@ const ExampleText = styled.em`
 `;
 
 export default function Meaning(props) {
+  const { meaning } = props;
+
   return (
     <div>
       <h5>Type:</h5>
       <H4 className={pt_serif.className}>{props.meaning.partOfSpeech}</H4>
       <Paragraph>{props.meaning.definition}</Paragraph>
-      <Example>
-        <h5>Example:</h5>
-        <ExampleText>{props.meaning.example}</ExampleText>
-      </Example>
-      <Synonyms synonyms={props.meaning.synonyms} />
+      {meaning.example && (
+        <Example>
+          <h5>Example:</h5>
+          <ExampleText>{meaning.example}</ExampleText>
+        </Example>
+      )}
+      {meaning.synonyms && meaning.synonyms.length > 0 && <Synonyms synonyms={meaning.synonyms} />}
     </div>
   );
 }
