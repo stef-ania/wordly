@@ -3,6 +3,7 @@ import Meaning from "./Meaning.jsx";
 import ErrorMessage from "./ErrorMessage.jsx";
 import styled from "styled-components";
 import { pt_serif } from "../utils/fonts.js";
+import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
 
 const H3 = styled.h3`
   margin: 0rem 0 1rem;
@@ -17,11 +18,20 @@ const H3 = styled.h3`
 const Phonetic = styled.div`
   margin: 2rem 0;
 `;
+
+const Separator = styled.hr`
+  margin: 3rem 0;
+  border: 0;
+  border-top: 2px solid var(--light-grey);
+`;
+
 export default function DefinitionData(props) {
+  const { definitionData } = props;
+
   return props.definitionData && props.definitionData.meanings && props.definitionData.meanings.length > 0 ? (
     <>
       <h5>Searched word:</h5>
-      <H3 className={pt_serif.className}>{props.definitionData.word}</H3>
+      <H3 className={pt_serif.className}>{capitalizeFirstLetter(props.definitionData.word)}</H3>
 
       <Phonetic>
         <span> Listen </span>
@@ -31,6 +41,7 @@ export default function DefinitionData(props) {
       {props.definitionData.meanings.map((meaning, index) => (
         <div key={index}>
           <Meaning meaning={meaning} />
+          {index < definitionData.meanings.length - 1 && <Separator />}
         </div>
       ))}
     </>

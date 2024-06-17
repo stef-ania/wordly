@@ -2,6 +2,7 @@ import React from "react";
 import Synonyms from "./Synonyms";
 import styled from "styled-components";
 import { pt_serif } from "../utils/fonts";
+import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
 
 const H4 = styled.h4`
   margin: 0 0 1rem;
@@ -47,7 +48,7 @@ export default function Meaning(props) {
       {meaning.example && (
         <Example>
           <h5>Example:</h5>
-          <ExampleText>{meaning.example}</ExampleText>
+          <ExampleText>"{capitalizeFirstLetter(meaning.example)}"</ExampleText>
         </Example>
       )}
       {meaning.synonyms && meaning.synonyms.length > 0 && <Synonyms synonyms={meaning.synonyms} />}

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
 
 const StyledSynonyms = styled.div`
   margin: 2rem 0;
@@ -28,7 +29,7 @@ export default function Synonyms(props) {
         <h5>Synonyms:</h5>
         <Ul>
           {props.synonyms.map(function (synonym, index) {
-            return <li key={index}>{synonym}</li>;
+            return <li key={index}>{capitalizeFirstLetter(synonym)}</li>;
           })}
         </Ul>
       </StyledSynonyms>
