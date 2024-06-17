@@ -1,24 +1,26 @@
 import React from "react";
 import styled from "styled-components";
+import { pt_serif } from "../utils/fonts";
 
 const StyledHeader = styled.header`
-  font-size: 1.2rem;
   display: flex;
-  text-align: center;
   justify-content: center;
   margin: 2rem auto;
-  /* 
-  margin: 0rem auto 2rem;
-  border-bottom: 1px solid var(--light-grey);
-  padding: 1rem 0;
-  background-color: #fff;
-  box-shadow: var(--box-shadow); */
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+const H1 = styled.h1`
+  font-size: 2rem;
+  line-height: 1.5rem;
+  text-align: center;
+  font-weight: 700;
 `;
 
 export default function Header() {
   return (
     <StyledHeader>
-      <h1>📕 WordlyPlus</h1>
+      <H1 className={pt_serif.className}>📕 Wordly</H1>
     </StyledHeader>
   );
 }

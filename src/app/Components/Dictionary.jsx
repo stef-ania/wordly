@@ -4,29 +4,32 @@ import { getWordDefinition } from "../services/dictionaryAPI";
 import DefinitionData from "./DefinitionData.jsx";
 import ErrorMessage from "./ErrorMessage";
 import styled from "styled-components";
-import { Nunito } from "next/font/google";
-
-export const nunito = Nunito({
-  weight: ["500", "700"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-nunito",
-});
+import { pt_serif } from "../utils/fonts";
+import { ScreenSizes } from "../utils/ScreenSizes";
 
 const StyledSection = styled.section`
   max-width: 60vw;
   width: 100%;
+
+  @media only screen and (max-width: ${ScreenSizes.laptop}) {
+    max-width: 80vw;
+  }
+
+  @media only screen and (max-width: ${ScreenSizes.tablet}) {
+    max-width: 100vw;
+    margin: 0 1rem;
+  }
 `;
 
-const StyledH2 = styled.h2`
-  font-size: 1.5rem;
-  line-height: 2rem;
+const H2 = styled.h2`
+  font-size: 2rem;
+  line-height: 2.5rem;
   margin-bottom: 2rem;
+  font-weight: 300;
 `;
 
-const StyledForm = styled.form`
-  padding: 3rem 12rem;
+const Form = styled.form`
+  padding: 6rem 12rem;
   background-color: #fff;
   border-radius: 1rem;
   box-shadow: var(--box-shadow);
@@ -34,9 +37,17 @@ const StyledForm = styled.form`
   flex-direction: column;
   justify-content: flex-start;
   margin: 1rem auto;
+
+  @media (max-width: ${ScreenSizes.laptop}) {
+    padding: 3rem 8rem;
+  }
+
+  @media (max-width: ${ScreenSizes.tablet}) {
+    padding: 2rem;
+  }
 `;
 
-const StyledArticle = styled.article`
+const Article = styled.article`
   padding: 3rem 12rem;
   background-color: #fff;
   border-radius: 1rem;
@@ -47,14 +58,13 @@ const StyledArticle = styled.article`
   margin: 2rem auto;
 `;
 
-const StyledLabel = styled.label`
+const Label = styled.label`
   text-transform: uppercase;
   letter-spacing: 1px;
   font-size: 12px;
-  font-family: var(--font-nunito), sans-serif;
 `;
 
-const StyledInput = styled.input`
+const Input = styled.input`
   background: #fff;
   border: 2px solid var(--middle-grey);
   border-radius: 6px;
@@ -65,6 +75,7 @@ const StyledInput = styled.input`
   line-height: 20px;
   padding: 15px 20px;
   margin: 0.5rem 0 1rem;
+  max-width: 768px;
   width: 100%;
   transition: all ease-in-out 300ms;
 
@@ -110,16 +121,16 @@ export default function Dictionary() {
 
   return (
     <StyledSection>
-      <StyledForm onSubmit={search}>
-        <StyledH2>Which word would you like to search for?</StyledH2>
-        <StyledLabel className={nunito.variable}> Search </StyledLabel>
-        <StyledInput type="search" value={word} onChange={handleWordChange} placeholder="Type a word..."></StyledInput>
-      </StyledForm>
+      <Form onSubmit={search}>
+        <H2 className={pt_serif.className}>Which word would you like to search for?</H2>
+        <Label> Search </Label>
+        <Input type="search" value={word} onChange={handleWordChange} placeholder="Type a word..."></Input>
+      </Form>
       {error && <ErrorMessage message={error} />}
       {definitionData && (
-        <StyledArticle>
+        <Article>
           <DefinitionData definitionData={definitionData} />
-        </StyledArticle>
+        </Article>
       )}
     </StyledSection>
   );

@@ -1,20 +1,6 @@
-import { PT_Serif, Nunito } from "next/font/google";
+// import { PT_Serif, Nunito } from "next/font/google";
+import { nunito_sans } from "./utils/fonts";
 import "./globals.css";
-
-const pt_serif = PT_Serif({
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  display: "swap",
-});
-
-export const nunito = Nunito({
-  weight: ["500", "700"],
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-nunito",
-});
 
 export const metadata = {
   title: "Wordly",
@@ -25,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={pt_serif.className}>{children}</body>
+      <body className={nunito_sans.className}>{children}</body>
     </html>
   );
 }

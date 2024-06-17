@@ -1,13 +1,13 @@
 "use client";
-import Image from "next/image";
 import Dictionary from "./Components/Dictionary";
 import Header from "./Components/Header.jsx";
 import styled from "styled-components";
 
 const StyledMain = styled.main`
-  margin: 0 auto;
+  margin: 2rem auto;
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 export default function Home() {
