@@ -10,14 +10,20 @@ import { ScreenSizes } from "../utils/ScreenSizes";
 const StyledSection = styled.section`
   max-width: 60vw;
   width: 100%;
+  padding: 6rem 12rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: var(--box-shadow);
 
   @media only screen and (max-width: ${ScreenSizes.laptop}) {
     max-width: 80vw;
+    padding: 3rem 8rem;
   }
 
   @media only screen and (max-width: ${ScreenSizes.tablet}) {
     max-width: 100vw;
     margin: 0 1rem;
+    padding: 2rem;
   }
 `;
 
@@ -29,33 +35,10 @@ const H2 = styled.h2`
 `;
 
 const Form = styled.form`
-  padding: 6rem 12rem;
-  background-color: #fff;
-  border-radius: 1rem;
-  box-shadow: var(--box-shadow);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   margin: 1rem auto;
-
-  @media (max-width: ${ScreenSizes.laptop}) {
-    padding: 3rem 8rem;
-  }
-
-  @media (max-width: ${ScreenSizes.tablet}) {
-    padding: 2rem;
-  }
-`;
-
-const Article = styled.article`
-  padding: 3rem 12rem;
-  background-color: #fff;
-  border-radius: 1rem;
-  box-shadow: var(--box-shadow);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin: 2rem auto;
 `;
 
 const Label = styled.label`
@@ -128,9 +111,9 @@ export default function Dictionary() {
       </Form>
       {error && <ErrorMessage message={error} />}
       {definitionData && (
-        <Article>
+        <>
           <DefinitionData definitionData={definitionData} />
-        </Article>
+        </>
       )}
     </StyledSection>
   );
