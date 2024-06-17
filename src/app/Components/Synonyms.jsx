@@ -1,11 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const Subtitle = styled.h5`
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 12px;
-  margin: 2rem 0 1rem;
+const StyledSynonyms = styled.div`
+  margin: 2rem 0;
 `;
 
 const Ul = styled.ul`
@@ -27,14 +24,14 @@ const Ul = styled.ul`
 export default function Synonyms(props) {
   if (props.synonyms) {
     return (
-      <div className="Synonyms">
-        <Subtitle>Synonyms:</Subtitle>
+      <StyledSynonyms>
+        <h5>Synonyms:</h5>
         <Ul>
           {props.synonyms.map(function (synonym, index) {
             return <li key={index}>{synonym}</li>;
           })}
         </Ul>
-      </div>
+      </StyledSynonyms>
     );
   } else {
     return null;

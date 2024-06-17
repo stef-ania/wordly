@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { pt_serif } from "../utils/fonts";
 
 const H4 = styled.h4`
-  margin: 1rem 0;
+  margin: 0 0 1rem;
   font-size: 1.2rem;
 
   &:first-letter {
@@ -21,20 +21,31 @@ const Paragraph = styled.p`
   }
 `;
 
-const Subtitle = styled.h5`
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 12px;
-  margin: 2rem 0 1rem;
+const Example = styled.div`
+  margin: 2rem 0;
+  border-left: 4px solid var(--middle-grey);
+  padding: 0.5rem 1rem 1rem 1rem;
+  background-color: var(--light-grey);
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+`;
+
+const ExampleText = styled.em`
+  &:first-letter {
+    text-transform: uppercase;
+  }
 `;
 
 export default function Meaning(props) {
   return (
     <div>
-      <H4 className={pt_serif.variable}>{props.meaning.partOfSpeech}</H4>
+      <h5>Type:</h5>
+      <H4 className={pt_serif.className}>{props.meaning.partOfSpeech}</H4>
       <Paragraph>{props.meaning.definition}</Paragraph>
-      <Subtitle>Examples</Subtitle>
-      <em>{props.meaning.example}</em>
+      <Example>
+        <h5>Example:</h5>
+        <ExampleText>{props.meaning.example}</ExampleText>
+      </Example>
       <Synonyms synonyms={props.meaning.synonyms} />
     </div>
   );

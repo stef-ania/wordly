@@ -6,6 +6,7 @@
   --dark-grey: #979797;
   --middle-grey: #d5d5d5;
   --light-grey: #f2f1ed;
+  --accent-color: #d05a23;
   --primary-color: #f0d3cf;
   --secondary-color: #eca685;
   --tertiary-color: #f3ce8b;
@@ -31,4 +32,13 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+h5 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.125rem;
+  margin: 0.5rem 0;
+  text-transform: uppercase;
 }
