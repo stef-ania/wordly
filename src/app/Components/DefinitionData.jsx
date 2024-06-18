@@ -9,7 +9,6 @@ import Phonetic from "./Phonetic.jsx";
 const H3 = styled.h3`
   margin: 0rem 0 1rem;
   font-size: 1.5rem;
-  color: var(--accent-color);
 
   &:first-letter {
     text-transform: uppercase;

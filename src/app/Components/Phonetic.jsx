@@ -1,6 +1,31 @@
 "use client";
 import React, { useState, useEffect } from "react";
-// import styled from "styled-components";
+import styled from "styled-components";
+
+const StyledButton = styled.button`
+  border: 2px solid var(--middle-grey);
+  padding: 0.5rem 1.5rem;
+  border-radius: 3rem;
+  background-color: #fff;
+  color: var(--accent-color);
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all ease-in-out 300ms;
+
+  &:hover {
+    border: 2px solid var(--accent-color);
+    transition: all ease-in-out 300ms;
+
+    &:active {
+      background-color: var(--accent-color);
+      color: #fff;
+      border: 2px solid var(--accent-color);
+      transition: all ease-in-out 300ms;
+    }
+  }
+`;
 
 export default function Phonetic({ phonetic, voiceName = "Google US English", rate = 1, pitch = 1 }) {
   const [utterance, setUtterance] = useState(null);
@@ -51,7 +76,7 @@ export default function Phonetic({ phonetic, voiceName = "Google US English", ra
 
   return (
     <div>
-      <button onClick={handlePlay}>{"Listen"}</button>
+      <StyledButton onClick={handlePlay}>{"Listen"}</StyledButton>
     </div>
   );
 }
