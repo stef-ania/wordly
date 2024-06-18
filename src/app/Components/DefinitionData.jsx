@@ -21,6 +21,14 @@ const Separator = styled.hr`
   border-top: 2px solid var(--light-grey);
 `;
 
+const PhoneticWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 2rem;
+`;
+
 export default function DefinitionData(props) {
   const { definitionData } = props;
 
@@ -29,8 +37,12 @@ export default function DefinitionData(props) {
       <h5>Searched word:</h5>
       <H3 className={pt_serif.className}>{capitalizeFirstLetter(props.definitionData.word)}</H3>
 
-      <Phonetic phonetic={props.definitionData.word} voiceName="Google UK English Female" rate={1} pitch={1.2} />
-      <em>/{props.definitionData.phonetic}/</em>
+      <PhoneticWrapper>
+        <Phonetic phonetic={props.definitionData.word} voiceName="Google UK English Female" rate={1} pitch={1.2} />
+        <span>
+          [ <em>{props.definitionData.phonetic}</em> ]
+        </span>
+      </PhoneticWrapper>
 
       {props.definitionData.meanings.map((meaning, index) => (
         <div key={index}>
