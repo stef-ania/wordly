@@ -6,7 +6,8 @@ import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
 
 const H4 = styled.h4`
   margin: 0 0 2rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  font-weight: 300;
 
   &:first-letter {
     text-transform: uppercase;
@@ -43,7 +44,7 @@ export default function Meaning(props) {
   return (
     <>
       <h5>Type:</h5>
-      <H4 className={pt_serif.className}>{props.meaning.partOfSpeech}</H4>
+      <H4>{props.meaning.partOfSpeech}</H4>
       <h5>Meaning:</h5>
       <Paragraph>{props.meaning.definition}.</Paragraph>
       {meaning.example && (
