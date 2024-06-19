@@ -1,11 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { getWordDefinition } from "../services/dictionaryAPI";
 import DefinitionData from "./DefinitionData.jsx";
 import ErrorMessage from "./ErrorMessage";
 import styled from "styled-components";
 import { pt_serif } from "../utils/fonts";
 import { ScreenSizes } from "../utils/ScreenSizes";
+import { ThreeDots } from "react-loader-spinner";
 
 const StyledSection = styled.section`
   max-width: 1024px;
@@ -74,13 +75,37 @@ const Input = styled.input`
   }
 `;
 
-export default function Dictionary() {
-  let [word, setWord] = useState("");
+export default function Dictionary(props) {
+  const [word, setWord] = useState(props.defaultWord);
   const [definitionData, setDefinitionData] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchInitialDefinition = async () => {
+      try {
+        const data = await getWordDefinition(word);
+        setDefinitionData(data);
+        setError(null);
+      } catch (error) {
+        if (error.response && error.response.data && error.response.data.message === "Word not found") {
+          setError("Sorry, we couldn't find the word you're looking for. Please try searching for another word.");
+        } else {
+          setError("Sorry, we couldn't find the word you're looking for. Please try searching for another word.");
+          console.log("Error fetching data");
+        }
+        setDefinitionData(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchInitialDefinition();
+  }, [word]);
 
   const search = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const data = await getWordDefinition(word);
       setDefinitionData(data);
@@ -94,6 +119,8 @@ export default function Dictionary() {
         console.log("Error fetching data");
       }
       setDefinitionData(null);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -109,10 +136,25 @@ export default function Dictionary() {
         <Label> Search </Label>
         <Input type="search" value={word} onChange={handleWordChange} placeholder="Type a word..."></Input>
       </Form>
-      {error && <ErrorMessage message={error} />}
-      {definitionData && (
+      {loading ? (
+        <ThreeDots
+          visible={true}
+          height="60"
+          width="60"
+          color="#d05a23"
+          radius="9"
+          ariaLabel="three-dots-loading"
+          wrapperStyle={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100px",
+          }}
+        />
+      ) : (
         <>
-          <DefinitionData definitionData={definitionData} />
+          {error && <ErrorMessage message={error} />}
+          {definitionData && <DefinitionData definitionData={definitionData} />}
         </>
       )}
     </StyledSection>
