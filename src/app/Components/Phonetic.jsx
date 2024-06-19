@@ -24,7 +24,6 @@ export default function Phonetic({ phonetic, rate = 1, pitch = 1 }) {
   const [utterance, setUtterance] = useState(null);
   const [voices, setVoices] = useState([]);
 
-  // Detectar el navegador
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   const isChrome = /chrome|chromium|crios/i.test(navigator.userAgent);
 
@@ -34,7 +33,6 @@ export default function Phonetic({ phonetic, rate = 1, pitch = 1 }) {
     const populateVoices = () => {
       const availableVoices = synth.getVoices();
       setVoices(availableVoices);
-      console.log(availableVoices);
     };
 
     if (synth.onvoiceschanged !== undefined) {
@@ -65,7 +63,6 @@ export default function Phonetic({ phonetic, rate = 1, pitch = 1 }) {
         selectedVoice = voices.find((voice) => voice.default);
       }
 
-      console.log("Selected Voice:", selectedVoice);
       if (selectedVoice) {
         u.voice = selectedVoice;
       } else {
