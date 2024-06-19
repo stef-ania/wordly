@@ -1,5 +1,4 @@
-"use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { getWordDefinition } from "../services/dictionaryAPI";
 import DefinitionData from "./DefinitionData.jsx";
 import ErrorMessage from "./ErrorMessage";
@@ -80,6 +79,7 @@ export default function Dictionary(props) {
   const [definitionData, setDefinitionData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     const fetchInitialDefinition = async () => {
@@ -101,7 +101,7 @@ export default function Dictionary(props) {
     };
 
     fetchInitialDefinition();
-  }, [word]);
+  }, []);
 
   const search = async (e) => {
     e.preventDefault();
@@ -124,10 +124,17 @@ export default function Dictionary(props) {
     }
   };
 
-  function handleWordChange(e) {
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+      inputRef.current.setSelectionRange(inputRef.current.value.length, inputRef.current.value.length);
+    }
+  }, []);
+
+  const handleWordChange = (e) => {
     console.log(e.target.value);
     setWord(e.target.value);
-  }
+  };
 
   return (
     <StyledSection>
@@ -135,6 +142,7 @@ export default function Dictionary(props) {
         <H2 className={pt_serif.className}>Which word would you like to search for?</H2>
         <Label> Search </Label>
         <Input
+          ref={inputRef}
           type="search"
           value={word}
           onChange={handleWordChange}
