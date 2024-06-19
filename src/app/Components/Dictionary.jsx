@@ -134,7 +134,13 @@ export default function Dictionary(props) {
       <Form onSubmit={search}>
         <H2 className={pt_serif.className}>Which word would you like to search for?</H2>
         <Label> Search </Label>
-        <Input type="search" value={word} onChange={handleWordChange} placeholder="Type a word..."></Input>
+        <Input
+          type="search"
+          value={word}
+          onChange={handleWordChange}
+          placeholder="Type a word..."
+          autoFocus={true}
+        ></Input>
       </Form>
       {loading ? (
         <ThreeDots
