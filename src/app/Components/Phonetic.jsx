@@ -17,13 +17,6 @@ const StyledButton = styled.button`
   &:hover {
     border: 2px solid var(--accent-color);
     transition: all ease-in-out 300ms;
-
-    &:active {
-      background-color: var(--accent-color);
-      color: #fff;
-      border: 2px solid var(--accent-color);
-      transition: all ease-in-out 300ms;
-    }
   }
 `;
 
