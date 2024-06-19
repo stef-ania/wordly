@@ -1,6 +1,7 @@
 // import { PT_Serif, Nunito } from "next/font/google";
 import { nunito_sans } from "./utils/fonts";
 import "./globals.css";
+import StyledComponentsRegistry from "./utils/registry";
 
 export const metadata = {
   title: "Wordly",
@@ -11,7 +12,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={nunito_sans.className}>{children}</body>
+      <body className={nunito_sans.className}>
+        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+      </body>
     </html>
   );
 }
