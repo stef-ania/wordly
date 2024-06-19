@@ -38,7 +38,7 @@ export default function DefinitionData(props) {
       <H3 className={pt_serif.className}>{capitalizeFirstLetter(props.definitionData.word)}</H3>
 
       <PhoneticWrapper>
-        <Phonetic phonetic={props.definitionData.word} voiceName="Google UK English Female" rate={1} pitch={1.2} />
+        <Phonetic phonetic={props.definitionData.word} voiceName="Nicky" rate={1} pitch={1.2} />
         <span>
           [ <em>{props.definitionData.phonetic}</em> ]
         </span>

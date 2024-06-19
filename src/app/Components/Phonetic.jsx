@@ -20,9 +20,13 @@ const StyledButton = styled.button`
   }
 `;
 
-export default function Phonetic({ phonetic, voiceName = "Google US English", rate = 1, pitch = 1 }) {
+export default function Phonetic({ phonetic, rate = 1, pitch = 1 }) {
   const [utterance, setUtterance] = useState(null);
   const [voices, setVoices] = useState([]);
+
+  // Detectar el navegador
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  const isChrome = /chrome|chromium|crios/i.test(navigator.userAgent);
 
   useEffect(() => {
     const synth = window.speechSynthesis;
@@ -30,6 +34,7 @@ export default function Phonetic({ phonetic, voiceName = "Google US English", ra
     const populateVoices = () => {
       const availableVoices = synth.getVoices();
       setVoices(availableVoices);
+      console.log(availableVoices);
     };
 
     if (synth.onvoiceschanged !== undefined) {
@@ -37,6 +42,10 @@ export default function Phonetic({ phonetic, voiceName = "Google US English", ra
     }
 
     populateVoices();
+
+    setTimeout(() => {
+      populateVoices();
+    }, 1000);
   }, []);
 
   useEffect(() => {
@@ -44,9 +53,23 @@ export default function Phonetic({ phonetic, voiceName = "Google US English", ra
       const synth = window.speechSynthesis;
       const u = new SpeechSynthesisUtterance(phonetic);
 
-      const selectedVoice = voices.find((voice) => voice.name === voiceName);
+      let selectedVoice;
+
+      if (isSafari) {
+        selectedVoice = voices.find((voice) => voice.name === "Samantha");
+      } else if (isChrome) {
+        selectedVoice = voices.find((voice) => voice.name === "Nicky");
+      }
+
+      if (!selectedVoice) {
+        selectedVoice = voices.find((voice) => voice.default);
+      }
+
+      console.log("Selected Voice:", selectedVoice);
       if (selectedVoice) {
         u.voice = selectedVoice;
+      } else {
+        console.warn("Voice not found, using default.");
       }
 
       u.rate = rate;
@@ -58,7 +81,7 @@ export default function Phonetic({ phonetic, voiceName = "Google US English", ra
         synth.cancel();
       };
     }
-  }, [phonetic, voices, voiceName, rate, pitch]);
+  }, [phonetic, voices, rate, pitch, isSafari, isChrome]);
 
   const handlePlay = () => {
     if (utterance) {
