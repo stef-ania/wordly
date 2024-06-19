@@ -29,6 +29,10 @@ const PhoneticWrapper = styled.div`
   margin-bottom: 2rem;
 `;
 
+const PhoneticWord = styled.span`
+  color: var(--dark-grey);
+`;
+
 export default function DefinitionData(props) {
   const { definitionData } = props;
 
@@ -39,9 +43,9 @@ export default function DefinitionData(props) {
 
       <PhoneticWrapper>
         <Phonetic phonetic={props.definitionData.word} voiceName="Nicky" rate={1} pitch={1.2} />
-        <span>
+        <PhoneticWord>
           [ <em>{props.definitionData.phonetic}</em> ]
-        </span>
+        </PhoneticWord>
       </PhoneticWrapper>
 
       {props.definitionData.meanings.map((meaning, index) => (
