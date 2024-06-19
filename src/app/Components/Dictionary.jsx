@@ -8,7 +8,7 @@ import { pt_serif } from "../utils/fonts";
 import { ScreenSizes } from "../utils/ScreenSizes";
 
 const StyledSection = styled.section`
-  max-width: 60vw;
+  max-width: 1024px;
   width: 100%;
   padding: 6rem 12rem;
   background-color: #fff;
@@ -16,13 +16,12 @@ const StyledSection = styled.section`
   box-shadow: var(--box-shadow);
 
   @media only screen and (max-width: ${ScreenSizes.laptop}) {
-    max-width: 80vw;
     padding: 3rem 8rem;
+    margin: 0 1rem;
   }
 
   @media only screen and (max-width: ${ScreenSizes.tablet}) {
     max-width: 100vw;
-    margin: 0 1rem;
     padding: 2rem;
   }
 `;
@@ -59,7 +58,7 @@ const Input = styled.input`
   line-height: 20px;
   padding: 15px 20px;
   margin: 0.5rem 0 1rem;
-  max-width: 768px;
+  max-width: 480px;
   width: 100%;
   transition: all ease-in-out 300ms;
 
