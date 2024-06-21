@@ -1,7 +1,6 @@
 import React from "react";
 import Synonyms from "./Synonyms";
 import styled from "styled-components";
-import { pt_serif } from "../utils/fonts";
 import { capitalizeFirstLetter } from "../utils/capitalizeFirstLetter";
 
 const H4 = styled.h4`
