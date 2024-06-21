@@ -1,12 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { getWordDefinition } from "../services/dictionaryAPI";
+import getPhotosDefinition from "../services/photosAPI";
 import styled from "styled-components";
 import { pt_serif } from "../utils/fonts";
 import { ScreenSizes } from "../utils/ScreenSizes";
 import DictionaryForm from "./DictionaryForm";
 import DictionaryResults from "./DictionaryResults";
-import DictionaryPhotos from "./DictionaryPhotos";
 
 const StyledSection = styled.section`
   max-width: 1024px;
@@ -37,6 +37,7 @@ const H2 = styled.h2`
 export default function Dictionary(props) {
   const [word, setWord] = useState(props.defaultWord);
   const [definitionData, setDefinitionData] = useState(null);
+  const [photoData, setPhotoData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -47,14 +48,19 @@ export default function Dictionary(props) {
         const data = await getWordDefinition(word);
         setDefinitionData(data);
         setError(null);
+
+        const imageData = await getPhotosDefinition(word);
+        setPhotoData(imageData);
+        console.log("API SheCodesPexel response data for useEffect:", imageData);
       } catch (error) {
         if (error.response && error.response.data && error.response.data.message === "Word not found") {
           setError("Sorry, we couldn't find the word you're looking for. Please try searching for another word.");
         } else {
           setError("Sorry, we couldn't find the word you're looking for. Please try searching for another word.");
-          console.log("Error fetching data");
+          console.log("Error fetching data:", error);
         }
         setDefinitionData(null);
+        setPhotoData(null);
       } finally {
         setLoading(false);
       }
@@ -71,16 +77,21 @@ export default function Dictionary(props) {
     try {
       const data = await getWordDefinition(word);
       setDefinitionData(data);
-      console.log(data);
+
+      const imageData = await getPhotosDefinition(word);
+      setPhotoData(imageData);
+      console.log("API SheCodesPexel response data:", imageData);
+
       setError(null);
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message === "Word not found") {
         setError("Sorry, we couldn't find the word you're looking for. Please try searching for another word.");
       } else {
         setError("Sorry, we couldn't find the word you're looking for. Please try searching for another word.");
-        console.log("Error fetching data");
+        console.log("Error fetching data:", error);
       }
       setDefinitionData(null);
+      setPhotoData(null);
     } finally {
       setLoading(false);
     }
@@ -91,7 +102,11 @@ export default function Dictionary(props) {
       <H2 className={pt_serif.className}>Which word would you like to search for?</H2>
       <DictionaryForm word={word} setWord={setWord} onSearch={search} />
       <DictionaryResults loading={loading} error={error} definitionData={definitionData} />
-      <DictionaryPhotos word={word} />
+      {photoData && photoData.photos && (
+        <div>
+          <img src={photoData.photos[0].src.medium} alt={word} />
+        </div>
+      )}
     </StyledSection>
   );
 }
