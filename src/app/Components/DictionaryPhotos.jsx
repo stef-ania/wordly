@@ -1,48 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { getImageDefinition } from "../services/photosAPI";
+"use client";
+import React from "react";
 import styled from "styled-components";
 
-const ImageContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+const PhotosGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
 `;
 
-const Image = styled.img`
+const Photo = styled.img`
   width: 100%;
-  max-width: 200px;
+  height: auto;
   border-radius: 8px;
   box-shadow: var(--box-shadow);
 `;
 
-const DictionaryImages = ({ word }) => {
-  const [images, setImages] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const data = await getImageDefinition(word);
-        setImages(data.photos);
-        setError(null);
-      } catch (error) {
-        setError("Error fetching images");
-        setImages([]);
-      }
-    };
-
-    if (word) {
-      fetchImages();
-    }
-  }, [word]);
-
+const DictionaryPhotos = ({ photos }) => {
   return (
-    <ImageContainer>
-      {error && <p>{error}</p>}
-      {images.length > 0 && images.map((image) => <Image key={image.id} src={image.src.medium} alt={image.alt} />)}
-    </ImageContainer>
+    <PhotosGrid>
+      {photos.slice(0, 6).map((photo) => (
+        <a key={photo.id} href={photo.url} target="_blank" rel="noopener noreferrer">
+          <Photo src={photo.src.landscape} alt={photo.alt} />
+        </a>
+      ))}
+    </PhotosGrid>
   );
 };
 
-export default DictionaryImages;
+export default DictionaryPhotos;

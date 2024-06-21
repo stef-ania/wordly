@@ -7,6 +7,7 @@ import { pt_serif } from "../utils/fonts";
 import { ScreenSizes } from "../utils/ScreenSizes";
 import DictionaryForm from "./DictionaryForm";
 import DictionaryResults from "./DictionaryResults";
+import DictionaryPhotos from "./DictionaryPhotos";
 
 const StyledSection = styled.section`
   max-width: 1024px;
@@ -102,11 +103,7 @@ export default function Dictionary(props) {
       <H2 className={pt_serif.className}>Which word would you like to search for?</H2>
       <DictionaryForm word={word} setWord={setWord} onSearch={search} />
       <DictionaryResults loading={loading} error={error} definitionData={definitionData} />
-      {photoData && photoData.photos && (
-        <div>
-          <img src={photoData.photos[0].src.medium} alt={word} />
-        </div>
-      )}
+      {photoData && photoData.photos && <DictionaryPhotos photos={photoData.photos} />}
     </StyledSection>
   );
 }

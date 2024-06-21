@@ -19,7 +19,6 @@ export const getPhotosDefinition = async (word) => {
         key: API_KEY,
       },
     });
-    console.log("API SheCodesPexel response data:", response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
