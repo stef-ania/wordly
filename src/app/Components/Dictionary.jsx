@@ -26,6 +26,10 @@ const StyledSection = styled.section`
     max-width: 100vw;
     padding: 2rem;
   }
+
+  @media only screen and (max-width: ${ScreenSizes.mobile}) {
+    padding: 1.5rem;
+  }
 `;
 
 const H2 = styled.h2`
@@ -33,6 +37,12 @@ const H2 = styled.h2`
   line-height: 2.5rem;
   margin-bottom: 2rem;
   font-weight: 300;
+
+  @media only screen and (max-width: ${ScreenSizes.mobile}) {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 export default function Dictionary(props) {

@@ -14,6 +14,7 @@ const Label = styled.label`
   letter-spacing: 1px;
   font-size: 12px;
   font-weight: 700;
+  color: var(--dark-grey);
 `;
 
 const Input = styled.input`
