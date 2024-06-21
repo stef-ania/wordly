@@ -1,5 +1,5 @@
 :root {
-  --max-width: 1100px;
+  --max-width: 1024px;
   --border-radius: 12px;
   --background: #f9f5ec;
   --dark-text-color: #0d0c22;
@@ -11,6 +11,7 @@
   --secondary-color: #eca685;
   --tertiary-color: #f3ce8b;
   --box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  --basic-transition: all ease-in-out 300ms;
 }
 
 * {

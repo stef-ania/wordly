@@ -12,11 +12,11 @@ const StyledButton = styled.button`
   font-size: 0.875rem;
   letter-spacing: 0.5px;
   cursor: pointer;
-  transition: all ease-in-out 300ms;
+  transition: var(--basic-transition);
 
   &:hover {
     border: 2px solid var(--accent-color);
-    transition: all ease-in-out 300ms;
+    transition: var(--basic-transition);
   }
 `;
 

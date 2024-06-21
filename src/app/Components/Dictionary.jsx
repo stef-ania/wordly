@@ -10,7 +10,7 @@ import DictionaryResults from "./DictionaryResults";
 import DictionaryPhotos from "./DictionaryPhotos";
 
 const StyledSection = styled.section`
-  max-width: 1024px;
+  max-width: var(--max-width);
   width: 100%;
   padding: 6rem 12rem;
   background-color: #fff;

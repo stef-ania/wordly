@@ -2,6 +2,7 @@
 import Dictionary from "./Components/Dictionary";
 import Header from "./Components/Header.jsx";
 import styled from "styled-components";
+import Footer from "./Components/Footer.jsx";
 
 const StyledMain = styled.main`
   margin: 2rem auto;
@@ -17,6 +18,7 @@ export default function Home() {
       <StyledMain>
         <Dictionary defaultWord="Coffee" />
       </StyledMain>
+      <Footer />
     </>
   );
 }

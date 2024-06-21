@@ -22,7 +22,7 @@ const Photo = styled.img`
 
   &:hover {
     box-shadow: var(--box-shadow);
-    transition: all ease-in-out 300ms;
+    transition: var(--basic-transition);
     filter: brightness(120%);
   }
 `;
