@@ -15,7 +15,7 @@ export default function Home() {
     <>
       <Header />
       <StyledMain>
-        <Dictionary defaultWord="Splendid" />
+        <Dictionary defaultWord="Coffee" />
       </StyledMain>
     </>
   );
