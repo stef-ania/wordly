@@ -5,7 +5,7 @@ import { pt_serif } from "../utils/fonts";
 const StyledHeader = styled.header`
   display: flex;
   justify-content: center;
-  margin: 2rem auto;
+  padding: 2rem 0;
   flex-direction: column;
   gap: 1rem;
 `;

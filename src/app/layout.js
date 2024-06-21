@@ -1,4 +1,3 @@
-// import { PT_Serif, Nunito } from "next/font/google";
 import { nunito_sans } from "./utils/fonts";
 import "./globals.css";
 import StyledComponentsRegistry from "./utils/registry";

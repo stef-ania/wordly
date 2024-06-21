@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export default function Footer() {
   const StyledFooter = styled.footer`
-    margin: 2rem auto;
+    padding: 2rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
