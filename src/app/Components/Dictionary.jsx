@@ -52,53 +52,22 @@ export default function Dictionary(props) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchInitialDefinition = async () => {
-      setLoading(true);
-      try {
-        const data = await getWordDefinition(word);
-        setDefinitionData(data);
-        setError(null);
-
-        const imageData = await getPhotosDefinition(word);
-        setPhotoData(imageData);
-        console.log("API SheCodesPexel response data for useEffect:", imageData);
-      } catch (error) {
-        if (error.response && error.response.data && error.response.data.message === "Word not found") {
-          setError("Sorry, we couldn't find the word you're looking for. Please try searching for another word.");
-        } else {
-          setError("Sorry, we couldn't find the word you're looking for. Please try searching for another word.");
-          console.log("Error fetching data:", error);
-        }
-        setDefinitionData(null);
-        setPhotoData(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (word) {
-      fetchInitialDefinition();
-    }
-  }, [word]);
-
-  const search = async (e) => {
-    e.preventDefault();
+  const fetchData = async (searchWord) => {
     setLoading(true);
     try {
-      const data = await getWordDefinition(word);
-      setDefinitionData(data);
+      const [definitionResponse, photoResponse] = await Promise.all([
+        getWordDefinition(searchWord),
+        getPhotosDefinition(searchWord),
+      ]);
 
-      const imageData = await getPhotosDefinition(word);
-      setPhotoData(imageData);
-      console.log("API SheCodesPexel response data:", imageData);
-
+      setDefinitionData(definitionResponse);
+      setPhotoData(photoResponse);
       setError(null);
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message === "Word not found") {
         setError("Sorry, we couldn't find the word you're looking for. Please try searching for another word.");
       } else {
-        setError("Sorry, we couldn't find the word you're looking for. Please try searching for another word.");
+        setError("Sorry, we encountered an error while fetching data. Please try again later.");
         console.log("Error fetching data:", error);
       }
       setDefinitionData(null);
@@ -108,10 +77,16 @@ export default function Dictionary(props) {
     }
   };
 
+  useEffect(() => {
+    if (word) {
+      fetchData(word);
+    }
+  }, [word]);
+
   return (
     <StyledSection>
       <H2 className={pt_serif.className}>Which word would you like to search for?</H2>
-      <DictionaryForm word={word} setWord={setWord} onSearch={search} />
+      <DictionaryForm word={word} setWord={setWord} onSearch={fetchData} />
       <DictionaryResults loading={loading} error={error} definitionData={definitionData} />
       {photoData && photoData.photos && <DictionaryPhotos photos={photoData.photos} />}
     </StyledSection>
