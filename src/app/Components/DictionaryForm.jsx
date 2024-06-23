@@ -62,7 +62,6 @@ export default function DictionaryForm({ word, setWord, onSearch }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setWord(inputValue);
-    onSearch(e);
   };
 
   return (
