@@ -66,11 +66,9 @@ The project is deployed on Netlify. You can access it [here](https://wordlyplus.
 - This application uses the [SheCodes Dictionary API](https://www.shecodes.io/learn/apis/dictionary) for fetching word meanings and related data.
 - Text-to-Speech API: [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API) to implement a button for text-to-speech functionality.
 
-## 🌅 Some images of the project
+## 🌅 Default view of the project on desktop
 
 ![Desktop default view](/public/assets/Wordly_desktop_default_view.png)
-
-![Mobile default view](/public/assets/Wordly_mobile_default_view.png)
 
 ## 🤝 Contributing
 
